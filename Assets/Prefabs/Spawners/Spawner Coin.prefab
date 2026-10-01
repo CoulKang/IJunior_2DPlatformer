@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30381ab58e106047814f518d2534d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2177008003303452553, guid: 5f20f59304c794d49a4fdd86887ef42a, type: 3}
+  _prefab: {fileID: 8875990775969093304, guid: 5f20f59304c794d49a4fdd86887ef42a, type: 3}
   _pool: {fileID: 422418203656359239}
   _spawnRadius: 3
   _spawnHeight: 1
