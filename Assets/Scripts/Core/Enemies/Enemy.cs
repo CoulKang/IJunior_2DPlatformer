@@ -22,10 +22,11 @@ namespace IJuniorPlatformer
 
         private void FixedUpdate()
         {
-            _patrol.Tick();
+            _patrol.SetDirectionOnBounds();
 
-            _mover.Tick(_patrol.Direction);
-            _rotator.Tick(_patrol.Direction);
+            _mover.Move(_patrol.Direction.x);
+
+            _rotator.Rotate(_patrol.Direction.x);
         }
 
         private void UpdateAnimations()
@@ -34,7 +35,7 @@ namespace IJuniorPlatformer
                 _animator.PlayIdle();
 
             if (_patrol.Direction.x != 0f)
-                _animator.PlayMove(_patrol.Direction);
+                _animator.PlayMove(_patrol.Direction.x);
         }
     }
 }

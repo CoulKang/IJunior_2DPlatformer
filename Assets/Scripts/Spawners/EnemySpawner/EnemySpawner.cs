@@ -21,10 +21,10 @@ namespace IJuniorPlatformer
             float minX = bounds.min.x;
             float maxX = bounds.max.x;
             float centerY = bounds.center.y;
+            float step = bounds.size.x / (_count + 1);
 
             for (int i = 0; i < _count; i++)
             {
-                float step = bounds.size.x / (_count + 1);
                 float spawnX = minX + step * (i + 1);
 
                 Vector2 spawnPosition = new Vector2(spawnX, centerY);

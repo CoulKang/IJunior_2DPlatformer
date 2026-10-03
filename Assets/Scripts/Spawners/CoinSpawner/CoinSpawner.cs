@@ -33,10 +33,27 @@ namespace IJuniorPlatformer
 
             while (isWork)
             {
-                _pool.GetCoin();
+                SpawnCoin();
 
                 yield return wait;
             }
+        }
+
+        private void SpawnCoin()
+        {
+            Coin coin = _pool.Get();
+
+            Vector2 randomOffset = Random.insideUnitCircle * _spawnRadius;
+            float spawnX = transform.position.x + randomOffset.x;
+
+            coin.transform.position = new Vector2(spawnX, _spawnHeight);
+            coin.Picked += OnCoinPicked;
+        }
+
+        private void OnCoinPicked(Coin coin)
+        {
+            coin.Picked -= OnCoinPicked;
+            _pool.Release(coin);
         }
     }
 }

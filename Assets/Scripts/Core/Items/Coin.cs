@@ -5,8 +5,11 @@ namespace IJuniorPlatformer
 {
     public class Coin : MonoBehaviour
     {
-        public event Action<Coin> OnPicked;
+        public event Action<Coin> Picked;
 
-        public void Pick() => OnPicked?.Invoke(this);
+        public void Pick()
+        {
+            Picked?.Invoke(this);
+        }
     }
 }

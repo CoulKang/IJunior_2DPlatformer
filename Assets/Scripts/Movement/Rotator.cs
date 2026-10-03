@@ -4,15 +4,26 @@ namespace IJuniorPlatformer
 {
     public class Rotator : MonoBehaviour
     {
-        public void Tick(Vector2 direction)
+        private const float ActivationTreshold = 0.01f;
+
+        private Quaternion _faceRight;
+        private Quaternion _faceLeft;
+
+        private void Awake()
         {
-            if (Mathf.Abs(direction.x) < 0.01f) 
+            _faceRight = Quaternion.identity;
+            _faceLeft = Quaternion.Euler(0f, 180f, 0f);
+        }
+
+        public void Rotate(float direction)
+        {
+            if (Mathf.Abs(direction) < ActivationTreshold) 
                 return;
 
-            if (direction.x >= 0f)
-                transform.localEulerAngles = Vector3.zero;
+            if (direction >= 0f)
+                transform.localRotation = _faceRight;
             else
-                transform.localEulerAngles = new Vector3(0, -180, 0);
+                transform.localRotation = _faceLeft;
         }
     }
 }

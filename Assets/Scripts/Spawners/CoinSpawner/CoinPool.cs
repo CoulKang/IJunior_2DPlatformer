@@ -22,12 +22,8 @@ namespace IJuniorPlatformer
 
             _pool = new ObjectPool<Coin>(
                 createFunc: () => Instantiate(_prefab),
-                actionOnGet: (coin) => Setup(coin),
-                actionOnRelease: (coin) =>
-                {
-                    coin.OnPicked -= Release;
-                    coin.gameObject.SetActive(false);
-                },
+                actionOnGet: (coin) => coin.gameObject.SetActive(true),
+                actionOnRelease: (coin) => coin.gameObject.SetActive(false),
                 actionOnDestroy: (coin) => Destroy(coin.gameObject),
                 collectionCheck: true,
                 defaultCapacity: _poolCapacity,
@@ -35,26 +31,8 @@ namespace IJuniorPlatformer
             );
         }
 
-        public void GetCoin()
-        {
-            _pool.Get();
-        }
+        public Coin Get() => _pool.Get();
 
-        private void Release(Coin coin)
-        {
-            _pool.Release(coin);
-        }
-
-        private void Setup(Coin coin)
-        {
-            Vector3 randomOffset = Random.insideUnitSphere * _spawnRadius;
-            float spawnX = transform.position.x + randomOffset.x;
-
-            coin.transform.position = new Vector2(spawnX, _spawnY);
-
-            coin.OnPicked += Release;
-
-            coin.gameObject.SetActive(true);
-        }
+        public void Release(Coin coin) => _pool.Release(coin);
     }
 }

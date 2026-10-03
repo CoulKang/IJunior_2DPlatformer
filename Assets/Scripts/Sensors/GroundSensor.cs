@@ -7,11 +7,11 @@ namespace IJuniorPlatformer
         [SerializeField, Min(0.01f)] private float _radius = 0.15f;
         [SerializeField] private LayerMask _groundMask;
 
-        [SerializeField] public bool IsGrounded;
+        [SerializeField] public bool IsGround;
 
-        public void Tick()
+        public void Scan()
         {
-            IsGrounded = Physics2D.OverlapCircle(transform.position, _radius, _groundMask);
+            IsGround = Physics2D.OverlapCircle(transform.position, _radius, _groundMask);
         }
     }
 }

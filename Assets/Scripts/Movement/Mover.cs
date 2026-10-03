@@ -4,14 +4,19 @@ namespace IJuniorPlatformer
 {
     public class Mover : MonoBehaviour
     {
+        [SerializeField] private float _moveSpeed = 7f;
+        [SerializeField] private float _jumpForce = 9f;
         [SerializeField] private Rigidbody2D _rigidbody;
 
-        [Space(5)]
-        [SerializeField] private float _moveSpeed = 7f;
-
-        public void Tick(Vector2 direction)
+        public void Jump()
         {
-            _rigidbody.velocity = new Vector2(direction.x * _moveSpeed, _rigidbody.velocity.y);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
+            _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+        }
+
+        public void Move(float direction)
+        {
+            _rigidbody.velocity = new Vector2(_moveSpeed * direction, _rigidbody.velocity.y);
         }
     }
 }

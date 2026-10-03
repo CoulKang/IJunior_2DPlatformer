@@ -13,7 +13,7 @@ namespace IJuniorPlatformer
 
         public bool JumpPressed => _jumpPressed;
 
-        public void Read()
+        private void Update()
         {
             float moveX = Input.GetAxisRaw(Horizontal);
 
@@ -23,6 +23,13 @@ namespace IJuniorPlatformer
                 _jumpPressed = true;
         }
 
-        public void ConsumeJump() => _jumpPressed = false;
+        public bool GetIsJump() => GetBoolAsTrigger(ref _jumpPressed);
+
+        private bool GetBoolAsTrigger(ref bool value)
+        {
+            bool localValue = value;
+            value = false;
+            return localValue;
+        }
     }
 }

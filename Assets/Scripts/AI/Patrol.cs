@@ -4,6 +4,8 @@ namespace IJuniorPlatformer
 {
     public class Patrol : MonoBehaviour
     {
+        private const float CenterOfBounds = 0.5f;
+
         private float _minBoundX;
         private float _maxBoundX;
         private bool _hasBounds;
@@ -16,13 +18,13 @@ namespace IJuniorPlatformer
             _maxBoundX = maxX;
             _hasBounds = true;
 
-            if (Random.value < 0.5f)
+            if (Random.value < CenterOfBounds)
                 Direction = new Vector2(-1f, 0);
             else
                 Direction = new Vector2(1f, 0);
         }
 
-        public void Tick()
+        public void SetDirectionOnBounds()
         {
             if (_hasBounds == false)
                 return;

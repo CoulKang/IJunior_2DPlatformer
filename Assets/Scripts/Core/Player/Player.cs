@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace IJuniorPlatformer
@@ -9,7 +8,6 @@ namespace IJuniorPlatformer
         [SerializeField] private PlayerInput _input;
         [SerializeField] private Mover _mover;
         [SerializeField] private Rotator _rotator;
-        [SerializeField] private Jumper _jumper;
         [SerializeField] private GroundSensor _groundSensor;
         [SerializeField] private CharacterAnimator _animator;
         [SerializeField] private CollisionHandler _collisionHandler;
@@ -29,30 +27,30 @@ namespace IJuniorPlatformer
 
         private void Update()
         {
-            _input.Read();
             UpdateAnimations();
         }
 
         private void FixedUpdate()
         {
-            _groundSensor.Tick();
+            _groundSensor.Scan();
 
-            _mover.Tick(_input.MoveDirection);
-            _rotator.Tick(_input.MoveDirection);
+            _mover.Move(_input.MoveDirection.x);
 
-            _jumper.Tick(_input.JumpPressed, _groundSensor.IsGrounded);
-            _input.ConsumeJump();
+            if (_input.GetIsJump() && _groundSensor.IsGround)
+                _mover.Jump();
+
+            _rotator.Rotate(_input.MoveDirection.x);
         }
 
         private void UpdateAnimations()
         {
-            _animator.SetGrounded(_groundSensor.IsGrounded);
+            _animator.SetGrounded(_groundSensor.IsGround);
 
-            if (_input.MoveDirection.x == 0f && _groundSensor.IsGrounded)
+            if (_input.MoveDirection.x == 0f && _groundSensor.IsGround)
                 _animator.PlayIdle();
 
-            if (_input.MoveDirection.x != 0f && _groundSensor.IsGrounded)
-                _animator.PlayMove(_input.MoveDirection);
+            if (_input.MoveDirection.x != 0f && _groundSensor.IsGround)
+                _animator.PlayMove(_input.MoveDirection.x);
 
             if (_input.JumpPressed)
             {
@@ -62,9 +60,9 @@ namespace IJuniorPlatformer
 
         private void HandleTriggerEnter(Collider2D collision)
         {
-            if (collision.TryGetComponent<Coin>(out var coin))
+            if (collision.TryGetComponent(out Coin resource))
             {
-                coin.Pick();
+                resource.Pick();
                 _wallet.AddCoin();
                 return;
             }

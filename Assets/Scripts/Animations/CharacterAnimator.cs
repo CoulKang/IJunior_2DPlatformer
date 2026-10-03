@@ -20,9 +20,9 @@ namespace IJuniorPlatformer
             _animator.SetFloat(SpeedHash, 0f);
         }
 
-        public void PlayMove(Vector2 direction)
+        public void PlayMove(float direction)
         {
-            _animator.SetFloat(SpeedHash, Mathf.Abs(direction.x));
+            _animator.SetFloat(SpeedHash, Mathf.Abs(direction));
         }
 
         public void PlayJump()

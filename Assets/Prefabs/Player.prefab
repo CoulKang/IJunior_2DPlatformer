@@ -168,8 +168,8 @@ MonoBehaviour:
   _radius: 0.15
   _groundMask:
     serializedVersion: 2
-    m_Bits: 1048576
-  IsGrounded: 0
+    m_Bits: 1572864
+  IsGround: 0
 --- !u!61 &1840152999112634520
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -304,7 +304,6 @@ MonoBehaviour:
   _input: {fileID: 8673668856802895933}
   _mover: {fileID: 4600837598103388323}
   _rotator: {fileID: 2710028199161510401}
-  _jumper: {fileID: 5807132804955133355}
   _groundSensor: {fileID: 3915900452390960902}
   _animator: {fileID: 8988673480529384168}
   _collisionHandler: {fileID: 1587171739264057175}
@@ -357,8 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27a0c4c6ce2c3a41ba715e7689bb711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 117488582815532841}
   _moveSpeed: 5
+  _jumpForce: 9
+  _rigidbody: {fileID: 117488582815532841}
 --- !u!114 &5807132804955133355
 MonoBehaviour:
   m_ObjectHideFlags: 0
