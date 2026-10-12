@@ -8,6 +8,8 @@ namespace IJuniorPlatformer
         [SerializeField] private float _jumpForce = 9f;
         [SerializeField] private Rigidbody2D _rigidbody;
 
+        public float VelocityY => _rigidbody.velocity.y;
+
         public void Jump()
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);

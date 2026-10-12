@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 3634985874290932642, guid: f0a9286fb6c89784bbfc9534d94c9aef, type: 3}
-  _count: 2
+  _count: 1
   _zone: {fileID: 1207081807650923533}
 --- !u!61 &1207081807650923533
 BoxCollider2D:
