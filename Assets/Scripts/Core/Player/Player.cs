@@ -1,3 +1,4 @@
+using UnityEditor.Sprites;
 using UnityEngine;
 
 namespace IJuniorPlatformer
@@ -26,15 +27,15 @@ namespace IJuniorPlatformer
         private void OnEnable()
         {
             _collisionHandler.TriggerEntered += HandleTriggerEnter;
-            _animEventCatcher.AttackFinished += OnAttackFinished;
-            _animEventCatcher.AttackActivated += OnAttackActivated;
+            _animEventCatcher.AttackFinished += FinishAttack;
+            _animEventCatcher.ActivateAttack += ActivateAttack;
         }
 
         private void OnDisable()
         {
             _collisionHandler.TriggerEntered -= HandleTriggerEnter;
-            _animEventCatcher.AttackFinished -= OnAttackFinished;
-            _animEventCatcher.AttackActivated -= OnAttackActivated;
+            _animEventCatcher.AttackFinished -= FinishAttack;
+            _animEventCatcher.ActivateAttack -= ActivateAttack;
         }
 
         private void Update()
@@ -100,12 +101,12 @@ namespace IJuniorPlatformer
             }
         }
 
-        private void OnAttackFinished()
+        private void FinishAttack()
         {
             _isAttacking = false;
         }
 
-        private void OnAttackActivated()
+        private void ActivateAttack()
         {
             _combat.Attack();
         }
@@ -114,7 +115,19 @@ namespace IJuniorPlatformer
         {
             if (collision.TryGetComponent(out IPickable resource))
             {
-                resource.Pick(this);
+                if (collision.TryGetComponent(out Coin _))
+                    _wallet.AddCoin();
+
+                if (collision.TryGetComponent(out MedicineKit medicineKit))
+                {
+                    if (Health.IsFull)
+                        return;
+
+                    _health.Recover(medicineKit.HealthScore);
+                }
+
+                resource.Pick();
+
                 return;
             }
         }

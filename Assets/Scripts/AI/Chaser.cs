@@ -9,11 +9,11 @@ namespace IJuniorPlatformer
 
         private Transform _target;
 
-        public float Direction { get; private set; }
-
-        public bool HasTarget { get { return _target != null; } }
+        public bool HasTarget => _target != null;
 
         public bool IsTargetInAttackRange { get; private set; }
+
+        public float Direction { get; private set; }
 
         public void SetTarget(Transform target)
         {

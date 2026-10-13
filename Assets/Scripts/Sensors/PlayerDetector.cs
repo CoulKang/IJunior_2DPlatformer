@@ -6,7 +6,8 @@ namespace IJuniorPlatformer
     [RequireComponent(typeof(BoxCollider2D))]
     public class PlayerDetector : MonoBehaviour
     {
-        [SerializeField] CollisionHandler _collisionHandler;
+        [SerializeField] private CollisionHandler _collisionHandler;
+
         public event Action<Transform> TargetDetected;
         public event Action TargetLost;
 

@@ -4,33 +4,33 @@ namespace IJuniorPlatformer
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] private float _maxHealth;
-        [SerializeField] private float _currentHealth;
+        [SerializeField] private float _maxScore;
+        [SerializeField] private float _currentScore;
 
-        public bool IsAlive { get { return _currentHealth > 0f; } }
+        public bool IsAlive => _currentScore > 0f;
 
-        public bool IsFull { get { return _currentHealth >= _maxHealth; } }
+        public bool IsFull => _currentScore >= _maxScore;
 
         private void OnValidate()
         {
-            if (_currentHealth > _maxHealth)
-                _currentHealth = _maxHealth;
+            if (_currentScore > _maxScore)
+                _currentScore = _maxScore;
         }
 
         public void Deduct(float totalDamage)
         {
-            _currentHealth -= totalDamage;
+            _currentScore -= totalDamage;
 
-            if (_currentHealth < 0f)
-                _currentHealth = 0f;
+            if (_currentScore < 0f)
+                _currentScore = 0f;
         }
 
-        public void Recover(float health)
+        public void Recover(float score)
         {
-            _currentHealth += health;
+            _currentScore += score;
 
-            if (_currentHealth > _maxHealth)
-                _currentHealth = _maxHealth;
+            if (_currentScore > _maxScore)
+                _currentScore = _maxScore;
         }
     }
 }

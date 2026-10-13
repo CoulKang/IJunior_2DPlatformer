@@ -7,11 +7,9 @@ namespace IJuniorPlatformer
     {
         public event Action<Coin> Picked;
 
-        public void Pick(Player picker)
+        public void Pick()
         {
             Picked?.Invoke(this);
-
-            picker.Wallet.AddCoin();
         }
     }
 }

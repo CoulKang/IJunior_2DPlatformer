@@ -337,8 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0f8bdf3c13c9c488e33f3411ade0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _currentHealth: 100
+  _maxScore: 100
+  _currentScore: 100
 --- !u!114 &4600837598103388323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colliderAttack: {fileID: 6984374533350374465}
+  _distance: 0
   _damage: 10
   _contactFilter:
     useTriggers: 0

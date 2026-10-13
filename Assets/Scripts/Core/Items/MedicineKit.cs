@@ -6,16 +6,10 @@ namespace IJuniorPlatformer
     {
         [SerializeField, Min(0f)] private float _healthScore = 5f;
 
-        public void Pick(Player picker)
+        public float HealthScore => _healthScore;
+
+        public void Pick()
         {
-            if (picker == null)
-                return;
-
-            if (picker.Health.IsFull)
-                return;
-
-            picker.Health.Recover(_healthScore);
-
             Destroy(gameObject);
         }
     }

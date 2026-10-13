@@ -31,8 +31,14 @@ namespace IJuniorPlatformer
             );
         }
 
-        public Coin Get() => _pool.Get();
+        public Coin Get()
+        {
+            return _pool.Get();
+        }
 
-        public void Release(Coin coin) => _pool.Release(coin);
+        public void Release(Coin coin)
+        {
+            _pool.Release(coin);
+        }
     }
 }

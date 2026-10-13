@@ -32,18 +32,18 @@ namespace IJuniorPlatformer
 
         private void OnEnable()
         {
-            _detector.TargetDetected += OnTargetDetected;
-            _detector.TargetLost += OnTargetLost;
-            _animEventCatcher.AttackActivated += OnAttackActivated;
-            _animEventCatcher.AttackFinished += OnAttackFinished;
+            _detector.TargetDetected += SetTarget;
+            _detector.TargetLost += LoseTarget;
+            _animEventCatcher.ActivateAttack += ActivateAttack;
+            _animEventCatcher.AttackFinished += FinishAttack;
         }
 
         private void OnDisable()
         {
-            _detector.TargetDetected -= OnTargetDetected;
-            _detector.TargetLost -= OnTargetLost;
-            _animEventCatcher.AttackActivated -= OnAttackActivated;
-            _animEventCatcher.AttackFinished -= OnAttackFinished;
+            _detector.TargetDetected -= SetTarget;
+            _detector.TargetLost -= LoseTarget;
+            _animEventCatcher.ActivateAttack -= ActivateAttack;
+            _animEventCatcher.AttackFinished -= FinishAttack;
         }
 
         private void Update()
@@ -103,12 +103,12 @@ namespace IJuniorPlatformer
             _animator.PlayAttack();
         }
 
-        private void OnAttackActivated()
+        private void ActivateAttack()
         {
             _combat.Attack();
         }
 
-        private void OnAttackFinished()
+        private void FinishAttack()
         {
             _isAttacking = false;
             _attackCooldownCoroutine = StartCoroutine(AttackCooldown(_attackCooldown));
@@ -136,12 +136,12 @@ namespace IJuniorPlatformer
                 _animator.PlayMove(directionX);
         }
 
-        private void OnTargetDetected(Transform target)
+        private void SetTarget(Transform target)
         {
             _chaser.SetTarget(target);
         }
 
-        private void OnTargetLost()
+        private void LoseTarget()
         {
             _chaser.ClearTarget();
         }

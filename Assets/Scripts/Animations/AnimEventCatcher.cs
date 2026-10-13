@@ -5,17 +5,17 @@ namespace IJuniorPlatformer
 {
     public class AnimEventCatcher : MonoBehaviour
     {
-        public event Action AttackActivated;
+        public event Action ActivateAttack;
         public event Action AttackFinished;
 
-        public void OnAttackAnimationEnd()
+        public void AttackAnimationEnd()
         {
             AttackFinished?.Invoke();
         }
 
-        public void OnAttackActivate()
+        public void AttackActivate()
         {
-            AttackActivated?.Invoke();
+            ActivateAttack?.Invoke();
         }
     }
 }

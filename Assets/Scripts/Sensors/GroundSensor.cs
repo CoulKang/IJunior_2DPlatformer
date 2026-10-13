@@ -7,7 +7,7 @@ namespace IJuniorPlatformer
         [SerializeField, Min(0.01f)] private float _radius = 0.15f;
         [SerializeField] private LayerMask _groundMask;
 
-        [SerializeField] public bool IsGround;
+        public bool IsGround;
 
         public void Scan()
         {
